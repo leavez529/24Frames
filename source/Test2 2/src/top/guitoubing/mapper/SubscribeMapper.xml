@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.guitoubing.mapper.SubscribeMapper">
+  <resultMap id="BaseResultMap" type="top.guitoubing.pojo.SubscribeKey">
+    <constructor>
+      <idArg column="S_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <idArg column="BY_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <select id="selectFollowed" resultType="java.lang.Integer">
+    SELECT count(1) FROM SUBSCRIBE_ WHERE S_ID_ = #{0,jdbcType=DECIMAL} and BY_ID_ = #{1,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="top.guitoubing.pojo.SubscribeKey">
+    delete from SUBSCRIBE_
+    where S_ID_ = #{sId,jdbcType=DECIMAL}
+      and BY_ID_ = #{byId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="top.guitoubing.pojo.SubscribeKey">
+    insert into SUBSCRIBE_ (S_ID_, BY_ID_)
+    values (#{sId,jdbcType=DECIMAL}, #{byId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="top.guitoubing.pojo.SubscribeKey">
+    insert into SUBSCRIBE_
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sId != null">
+        S_ID_,
+      </if>
+      <if test="byId != null">
+        BY_ID_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sId != null">
+        #{sId,jdbcType=DECIMAL},
+      </if>
+      <if test="byId != null">
+        #{byId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

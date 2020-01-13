@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.guitoubing.mapper.MoviePicMapper">
+  <resultMap id="BaseResultMap" type="top.guitoubing.pojo.MoviePic">
+    <constructor>
+      <arg column="MOVIE_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="PICTURE_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="top.guitoubing.pojo.MoviePic">
+    insert into MOVIE_PIC_ (MOVIE_ID_, PICTURE_ID_)
+    values (#{movieId,jdbcType=DECIMAL}, #{pictureId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="top.guitoubing.pojo.MoviePic">
+    insert into MOVIE_PIC_
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="movieId != null">
+        MOVIE_ID_,
+      </if>
+      <if test="pictureId != null">
+        PICTURE_ID_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="movieId != null">
+        #{movieId,jdbcType=DECIMAL},
+      </if>
+      <if test="pictureId != null">
+        #{pictureId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

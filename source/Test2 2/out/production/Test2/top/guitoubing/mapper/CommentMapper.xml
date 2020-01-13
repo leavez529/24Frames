@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.guitoubing.mapper.CommentMapper">
+  <resultMap id="BaseResultMap" type="top.guitoubing.pojo.Comment">
+    <constructor>
+      <idArg column="ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="CONTENT_" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="MOMENT_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="USER_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID_, CONTENT_, MOMENT_ID_, USER_ID_
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from COMMENT_
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </select>
+  <select id="selectByMomentId" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    SELECT * FROM COMMENT_ WHERE MOMENT_ID_ = #{id,jdbcType=DECIMAL}
+  </select>
+  <select id="getMaxId" resultType="java.math.BigDecimal">
+    select MAX(ID_) from COMMENT_
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from COMMENT_
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="top.guitoubing.pojo.Comment">
+    insert into COMMENT_ (ID_, CONTENT_, MOMENT_ID_, 
+      USER_ID_)
+    values (#{id,jdbcType=DECIMAL}, #{content,jdbcType=VARCHAR}, #{momentId,jdbcType=DECIMAL}, 
+      #{userId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="top.guitoubing.pojo.Comment">
+    insert into COMMENT_
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID_,
+      </if>
+      <if test="content != null">
+        CONTENT_,
+      </if>
+      <if test="momentId != null">
+        MOMENT_ID_,
+      </if>
+      <if test="userId != null">
+        USER_ID_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="momentId != null">
+        #{momentId,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.guitoubing.pojo.Comment">
+    update COMMENT_
+    <set>
+      <if test="content != null">
+        CONTENT_ = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="momentId != null">
+        MOMENT_ID_ = #{momentId,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        USER_ID_ = #{userId,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.guitoubing.pojo.Comment">
+    update COMMENT_
+    set CONTENT_ = #{content,jdbcType=VARCHAR},
+      MOMENT_ID_ = #{momentId,jdbcType=DECIMAL},
+      USER_ID_ = #{userId,jdbcType=DECIMAL}
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

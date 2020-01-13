@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Test2:war exploded">
+    <output-path />
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Test2" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="ojdbc6" />
+          <element id="library" level="project" name="com.springsource.org.aopalliance-1.0.0" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="Test2/web/Web" />
+    </root>
+  </artifact>
+</component>

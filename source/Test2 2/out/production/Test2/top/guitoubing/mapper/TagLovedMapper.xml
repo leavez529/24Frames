@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.guitoubing.mapper.TagLovedMapper">
+  <resultMap id="BaseResultMap" type="top.guitoubing.pojo.TagLovedKey">
+    <constructor>
+      <idArg column="TAG_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <idArg column="USER_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="top.guitoubing.pojo.TagLovedKey">
+    delete from TAG_LOVED_
+    where TAG_ID_ = #{tagId,jdbcType=DECIMAL}
+      and USER_ID_ = #{userId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="top.guitoubing.pojo.TagLovedKey">
+    insert into TAG_LOVED_ (TAG_ID_, USER_ID_)
+    values (#{tagId,jdbcType=DECIMAL}, #{userId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="top.guitoubing.pojo.TagLovedKey">
+    insert into TAG_LOVED_
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tagId != null">
+        TAG_ID_,
+      </if>
+      <if test="userId != null">
+        USER_ID_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tagId != null">
+        #{tagId,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

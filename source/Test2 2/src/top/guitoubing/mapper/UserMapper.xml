@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.guitoubing.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="top.guitoubing.pojo.User">
+    <constructor>
+      <idArg column="ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="USERNAME_" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PASSWORD_" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="GENDER_" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="FANS_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="SUBSCRIBE_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="INTRO_" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="AVATOR_" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="TEL" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID_, USERNAME_, PASSWORD_, GENDER_, FANS_, SUBSCRIBE_, INTRO_, AVATOR_, TEL
+  </sql>
+  <select id="selectFollower" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    SELECT * FROM USER_ WHERE ID_ IN (SELECT BY_ID_ FROM SUBSCRIBE_ WHERE S_ID_ = #{id,jdbcType=DECIMAL})
+  </select>
+  <select id="selectFollowed" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    SELECT * FROM USER_ WHERE ID_ IN (SELECT S_ID_ FROM SUBSCRIBE_ WHERE BY_ID_ = #{id,jdbcType=DECIMAL})
+  </select>
+  <select id="countFollower" parameterType="java.math.BigDecimal" resultType="java.lang.Integer">
+    SELECT count(1) FROM SUBSCRIBE_ WHERE S_ID_ = #{id,jdbcType=DECIMAL}
+  </select>
+  <select id="countFollowed" parameterType="java.math.BigDecimal" resultType="java.lang.Integer">
+    SELECT count(1) FROM SUBSCRIBE_ WHERE BY_ID_ = #{id,jdbcType=DECIMAL}
+  </select>
+  <select id="selectByLovedMoment" parameterType="java.math.BigDecimal" resultType="java.math.BigDecimal">
+    SELECT ID_ FROM USER_ WHERE ID_ IN (SELECT USER_ID_ from MOMENT_LOVED_ WHERE MOMENT_ID_=#{id,jdbcType=DECIMAL})
+  </select>
+  <select id="selectMaxId" resultType="java.math.BigDecimal">
+    SELECT max(ID_) from USER_
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from USER_
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </select>
+  <select id="selectByTel" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from USER_ where TEL=#{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from USER_
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="top.guitoubing.pojo.User">
+    insert into USER_ (ID_, USERNAME_, PASSWORD_, 
+      GENDER_, FANS_, SUBSCRIBE_, 
+      INTRO_, AVATOR_, TEL)
+    values (#{id,jdbcType=DECIMAL}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{fans,jdbcType=DECIMAL}, #{subscribe,jdbcType=DECIMAL}, 
+      #{intro,jdbcType=VARCHAR}, #{avator,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="top.guitoubing.pojo.User">
+    insert into USER_
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID_,
+      </if>
+      <if test="username != null">
+        USERNAME_,
+      </if>
+      <if test="password != null">
+        PASSWORD_,
+      </if>
+      <if test="gender != null">
+        GENDER_,
+      </if>
+      <if test="fans != null">
+        FANS_,
+      </if>
+      <if test="subscribe != null">
+        SUBSCRIBE_,
+      </if>
+      <if test="intro != null">
+        INTRO_,
+      </if>
+      <if test="avator != null">
+        AVATOR_,
+      </if>
+      <if test="tel != null">
+        TEL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="fans != null">
+        #{fans,jdbcType=DECIMAL},
+      </if>
+      <if test="subscribe != null">
+        #{subscribe,jdbcType=DECIMAL},
+      </if>
+      <if test="intro != null">
+        #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="avator != null">
+        #{avator,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.guitoubing.pojo.User">
+    update USER_
+    <set>
+      <if test="username != null">
+        USERNAME_ = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD_ = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        GENDER_ = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="fans != null">
+        FANS_ = #{fans,jdbcType=DECIMAL},
+      </if>
+      <if test="subscribe != null">
+        SUBSCRIBE_ = #{subscribe,jdbcType=DECIMAL},
+      </if>
+      <if test="intro != null">
+        INTRO_ = #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="avator != null">
+        AVATOR_ = #{avator,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.guitoubing.pojo.User">
+    update USER_
+    set USERNAME_ = #{username,jdbcType=VARCHAR},
+      PASSWORD_ = #{password,jdbcType=VARCHAR},
+      GENDER_ = #{gender,jdbcType=VARCHAR},
+      FANS_ = #{fans,jdbcType=DECIMAL},
+      SUBSCRIBE_ = #{subscribe,jdbcType=DECIMAL},
+      INTRO_ = #{intro,jdbcType=VARCHAR},
+      AVATOR_ = #{avator,jdbcType=VARCHAR},
+      TEL = #{tel,jdbcType=VARCHAR}
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.guitoubing.mapper.MovieMapper">
+  <resultMap id="BaseResultMap" type="top.guitoubing.pojo.Movie">
+    <constructor>
+      <idArg column="ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="NAME_" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="YEAR_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="LENGTH_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="COVER_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="TYPE_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="REGION_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="BACKGROUND_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID_, NAME_, YEAR_, LENGTH_, COVER_, TYPE_, REGION_, BACKGROUND_
+  </sql>
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * from MOVIE_ WHERE MOVIE_.NAME_ LIKE '%'||#{id,jdbcType=VARCHAR}||'%'
+  </select>
+  <select id="selectByUser" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    SELECT * from MOVIE_ WHERE ID_ IN (SELECT MOVIE_ID_ from MOVIE_LOVED_ WHERE USER_ID_=#{id,jdbcType=DECIMAL})
+  </select>
+  <select id="selectByType" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from MOVIE_ WHERE TYPE_ = (SELECT ID_ FROM TYPE_ WHERE TYPE_.DETAIL_=#{id,jdbcType=VARCHAR})
+  </select>
+  <select id="selectByTag" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select *
+    from MOVIE_ WHERE ID_ IN
+    (SELECT MOVIE_ID_ FROM MOVIE_TAG_ WHERE TAG_ID_ = #{id,jdbcType=DECIMAL})
+  </select>
+  <select id="selectByRegion" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * FROM MOVIE_ WHERE REGION_ = (SELECT ID_ FROM REGION_ WHERE REGION_.DETAIL_ = #{id,jdbcType=VARCHAR})
+  </select>
+  <select id="selectByDirector" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * FROM MOVIE_ WHERE ID_ IN (SELECT MOVIE_ID_ from DIRECT_ WHERE DIRECTOR_ID_ = (SELECT ID_ FROM DIRECTOR_ WHERE DIRECTOR_.NAME_ = #{id,jdbcType=VARCHAR}))
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from MOVIE_
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from MOVIE_
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="top.guitoubing.pojo.Movie">
+    insert into MOVIE_ (ID_, NAME_, YEAR_, 
+      LENGTH_, COVER_, TYPE_, 
+      REGION_, BACKGROUND_)
+    values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{year,jdbcType=DECIMAL}, 
+      #{length,jdbcType=DECIMAL}, #{cover,jdbcType=DECIMAL}, #{type,jdbcType=DECIMAL}, 
+      #{region,jdbcType=DECIMAL}, #{background,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="top.guitoubing.pojo.Movie">
+    insert into MOVIE_
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID_,
+      </if>
+      <if test="name != null">
+        NAME_,
+      </if>
+      <if test="year != null">
+        YEAR_,
+      </if>
+      <if test="length != null">
+        LENGTH_,
+      </if>
+      <if test="cover != null">
+        COVER_,
+      </if>
+      <if test="type != null">
+        TYPE_,
+      </if>
+      <if test="region != null">
+        REGION_,
+      </if>
+      <if test="background != null">
+        BACKGROUND_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=DECIMAL},
+      </if>
+      <if test="length != null">
+        #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="cover != null">
+        #{cover,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=DECIMAL},
+      </if>
+      <if test="region != null">
+        #{region,jdbcType=DECIMAL},
+      </if>
+      <if test="background != null">
+        #{background,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.guitoubing.pojo.Movie">
+    update MOVIE_
+    <set>
+      <if test="name != null">
+        NAME_ = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        YEAR_ = #{year,jdbcType=DECIMAL},
+      </if>
+      <if test="length != null">
+        LENGTH_ = #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="cover != null">
+        COVER_ = #{cover,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null">
+        TYPE_ = #{type,jdbcType=DECIMAL},
+      </if>
+      <if test="region != null">
+        REGION_ = #{region,jdbcType=DECIMAL},
+      </if>
+      <if test="background != null">
+        BACKGROUND_ = #{background,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.guitoubing.pojo.Movie">
+    update MOVIE_
+    set NAME_ = #{name,jdbcType=VARCHAR},
+      YEAR_ = #{year,jdbcType=DECIMAL},
+      LENGTH_ = #{length,jdbcType=DECIMAL},
+      COVER_ = #{cover,jdbcType=DECIMAL},
+      TYPE_ = #{type,jdbcType=DECIMAL},
+      REGION_ = #{region,jdbcType=DECIMAL},
+      BACKGROUND_ = #{background,jdbcType=DECIMAL}
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

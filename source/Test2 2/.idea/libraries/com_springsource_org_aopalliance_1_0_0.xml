@@ -1,0 +1,42 @@
+<component name="libraryTable">
+  <library name="com.springsource.org.aopalliance-1.0.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../ssm/com.springsource.org.aopalliance-1.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/com.springsource.org.apache.commons.logging-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/com.springsource.org.apache.log4j-1.2.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/commons-collections-3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/commons-fileupload-1.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/commons-io-1.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/commons-lang3-3.8.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/commons-logging-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/commons-logging-api-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/druid-1.0.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/fastjson-1.2.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/hamcrest-all-1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/jackson-annotations-2.5.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/jackson-core-2.5.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/jackson-databind-2.5.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/jsqlparser-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/jstl-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/junit-4.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/mybatis-3.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/mybatis-spring-1.2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/mysql-connector-java-5.1.6-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/pagehelper-5.1.0-beta2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/servlet-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/spring-aop-3.2.16.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/spring-aspects-3.2.16.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/spring-beans-3.2.16.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/spring-context-3.2.16.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/spring-core-3.2.16.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/spring-expression-3.2.16.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/spring-jdbc-3.2.16.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/spring-test-3.2.16.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/spring-tx-3.2.16.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/spring-web-3.2.16.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../ssm/spring-webmvc-3.2.16.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

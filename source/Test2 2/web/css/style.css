@@ -1,0 +1,562 @@
+html,body {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	min-width: 1000px;
+	overflow-x: hidden;
+}
+
+
+/*******************************************/
+
+/*-----------------header------------------*/
+
+/*******************************************/
+
+
+#header{
+	height: 50px;
+	border-bottom: 1px solid #ccc;
+	padding: 0 40px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	background-color: #fff;
+}
+
+#header #icon{
+	flex-basis: 200px
+	
+}
+
+#header #search-bar{
+	flex-basis: 200px;
+	width: 200px;
+	height: 25px;
+	background-color: #fff;
+	border-radius: 5px;
+	border:1px solid #ddd;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#header #search-bar #search-pic{
+	height: 15px;
+	width: auto;
+	margin-left: 5px;
+}
+
+#header #search-bar #search-input{
+	border:none;
+	outline: none;
+	margin-left: 5px;
+	padding-left: 5px;
+	width: 150px;
+}
+
+
+#header #tools{
+	width: 200px;
+	flex-basis: 200px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+}
+
+#header #tools #search-pic-small{
+	height: 25px;
+	width: auto;
+}
+
+#header #tools #message-pic{
+	height: 25px;
+	width: auto;
+}
+
+#header #tools #menu-pic{
+	height: 25px;
+	width: auto;
+}
+
+#header #tools #user-pic{
+	height: 25px;
+	width: auto;
+}
+
+/*******************************************/
+
+/*-----------------container---------------*/
+
+/*******************************************/
+
+
+#container{
+	position: relative;
+}
+
+
+
+/*******************************************/
+
+/*-------------main-container--------------*/
+
+/*******************************************/
+
+#main-container{
+	width: 100%;
+	margin:5px auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+}
+
+
+/*******************************************/
+
+/*---------main-container-poster-----------*/
+
+/*******************************************/
+
+#main-container #movie-background{
+	
+}
+
+
+#main-container #movie-poster{
+	border-radius: 10px;
+	width: 80%;
+	margin: 0 auto;
+	height: 700px;
+	background-position: center;
+	background-size: 100%;
+	position: relative;
+	background-repeat: no-repeat;
+}
+
+
+/*******************************************/
+
+/*---------main-container-bg-filter--------*/
+
+/*******************************************/
+
+#main-container #movie-backgroound-filter{
+	width: 110%;
+	position: absolute;
+	top: 0;
+	z-index: -1;
+	overflow: hidden;
+	background-image: url('../img/imgLYK/movie-poster.jpg');
+	background-position: center;
+	background-size: 100%;
+	-webkit-filter: blur(5px);
+       -moz-filter: blur(5px);
+        -ms-filter: blur(5px);    
+            filter: blur(5px);
+    margin-top: -50px;
+    margin-left: -50px;
+    margin-right: 100px;
+}
+
+
+/*******************************************/
+
+/*------main-container-information---------*/
+
+/*******************************************/
+
+
+#main-container #movie-information{
+	background-color: rgba(200,200,200,0.5);
+	color: black;
+	width: 100%;
+	margin: 0 auto;
+	padding-top: 5px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	position: absolute;
+	bottom: 0px;
+}
+
+#main-container #movie-information #movie-detail{
+	margin-left: 30px;
+}
+
+#main-container #movie-detail #movie-important{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+#main-container #movie-detail .movie-info{
+	margin-left: 50px;
+}
+
+#main-container #movie-detail #movie-important #movie-name-ch,
+#main-container #movie-detail #movie-important #movie-name-en,
+#main-container #movie-detail #movie-important #movie-time{
+	font-size: 30px;
+	font-weight: bold;
+}
+
+#main-container #movie-detail #movie-important #movie-detail-more{
+	margin-left: 10px; 
+	margin-right: 10px; 
+	height: 30px;
+	width: auto;
+}
+
+#main-container #movie-detail #movie-important #movie-love{
+	margin-left: 10px; 
+	margin-right: 10px; 
+	height: 30px;
+	width: auto;
+}
+
+/*******************************************/
+
+/*-----------------music-------------------*/
+
+/*******************************************/
+
+
+#movie-music{
+	height: 600px;
+	margin:0 auto;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#movie-music #audio-player{
+	width: 80%;
+	height: 40px;
+	position: absolute;
+	bottom: 50px;
+}
+
+#movie-music-container{
+	width: 80%;
+
+}
+
+
+#movie-music #movie-music-title{
+	text-align: center;
+	margin-top: 0px;
+}
+
+#movie-music-container #music-list{
+	margin-right: -10px;
+	padding-right: 10px;
+	overflow-y: auto;
+	height: 400px;
+}
+
+#movie-music-container #music-list::-webkit-scrollbar{
+	    width: 7px;     /*高宽分别对应横竖滚动条的尺寸*/
+        height: 1px;
+    }
+#movie-music-container #music-list::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+        border-radius: 10px;
+         /*-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);*/
+        background: #ddd;
+    }
+#movie-music-container #music-list::-webkit-scrollbar-track {/*滚动条里面轨道*/
+        border:1px solid #eee;
+        border-radius: 10px;
+        background: #fff;
+    }
+
+#movie-music-container .movie-music-item{
+	height: 26px;
+	font-size: 15px;
+	margin-top: 10px;
+	padding-bottom: 2px;
+	border-bottom:1px solid #ccc;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	font-weight: lighter;
+}
+
+#movie-music-container .movie-music-item .icon{
+	flex-basis: 10%;
+	
+}
+
+#movie-music-container .movie-music-item .icon img{
+	height: 20px;
+	width: auto;
+}
+
+#movie-music-container .movie-music-item .music-name{
+	flex-basis: 57%;
+	overflow: hidden;
+	white-space:nowrap; 
+	text-overflow:ellipsis;
+	margin-right: 10px;
+}
+
+#movie-music-container .movie-music-item .music-singer{
+	flex-basis: 33%;
+	overflow: hidden;
+	white-space:nowrap; 
+	text-overflow:ellipsis;
+	margin-right: 10px;
+}
+
+/*******************************************/
+
+/*---------main-container-pic-bg-----------*/
+
+/*******************************************/
+
+#main-container #movie-pic-background{
+	background-color: #fff;
+	margin-top: 10px;
+}
+
+
+/*******************************************/
+
+/*---------main-container-pic--------------*/
+
+/*******************************************/
+
+#main-container #movie-pic{
+	
+	width: 80%;
+	margin: 0 auto;
+	margin-top:70px;
+}
+
+#main-container #movie-pic #movie-pic-title{
+	text-align: center;
+}
+
+#main-container #movie-pic-waterfall{
+	position: relative;
+}
+
+#main-container #movie-pic-waterfall .movie-pic-box{
+	width: 20%;
+	height: auto;
+	float: left;
+	border:1px solid #ccc;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+#main-container #movie-pic-waterfall .movie-pic-box img{
+	width:100% ;
+}
+
+
+/*******************************************/
+
+/*---------container-float-button----------*/
+
+/*******************************************/
+
+
+@keyframes showMusic{
+from {bottom: 50px;}
+to {bottom: 100px;}
+}
+
+@-moz-keyframes showMusic{
+from {bottom: 50px;}
+to {bottom: 100px;}
+}
+
+@-webkit-keyframes showMusic{
+from {bottom: 50px;}
+to {bottom: 100px;}
+}
+
+@-o-keyframes showMusic{
+from {bottom: 50px;}
+to {bottom: 100px;}
+}
+
+#container #float-buttons{
+	width: 50px;
+	position: fixed;
+	right: 50px;
+	bottom: 50px;
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: space-around;
+}
+
+#container #float-button{
+	width: 50px;
+	height: auto;
+	
+}
+
+#container #float-button img{
+	width: 45px;
+	height: auto;
+}
+
+
+#container #float-button-music{
+	display: none;	
+	width: 50px;
+	height: auto;
+	margin-bottom: 10px;
+
+}
+
+#container #float-button-music img{
+	width: 45px;
+	height: auto;
+}
+
+
+#container #float-button-comment{
+	display: none;
+	width: 50px;
+	height: auto;
+	margin-bottom: 10px;
+}
+
+#container #float-button-comment img{
+	width: 45px;
+	height: auto;
+}
+
+
+/*******************************************/
+
+/*---------------movie-story---------------*/
+
+/*******************************************/
+
+#movie-story{
+	padding-left: 40px;
+	padding-right: 40px;
+	
+	display: flex;
+	flex-direction: column;
+	
+	align-items: center;
+}
+
+#movie-story-title{
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+
+/*******************************************/
+
+/*---------------movie-comment-------------*/
+
+/*******************************************/
+
+#movie-comment{
+	height: 600px;
+	width: 90%;
+	margin: 0 auto;
+	min-height: 200px;
+	position: relative;
+}
+
+#movie-comment-title{
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+#movie-comment #comment-list{
+	overflow-y: auto;
+	height: 400px;
+	padding: 10px;
+}
+
+#movie-comment #comment-list::-webkit-scrollbar{
+	    width: 7px;     /*高宽分别对应横竖滚动条的尺寸*/
+        height: 1px;
+    }
+#movie-comment #comment-list::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+        border-radius: 10px;
+         /*-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);*/
+        background: #ddd;
+    }
+#movie-comment #comment-list::-webkit-scrollbar-track {/*滚动条里面轨道*/
+        border:1px solid #eee;
+        border-radius: 10px;
+        background: #fff;
+    }
+
+#movie-comment #comment-list .comment-item{
+	margin-top: 5px;
+	border-bottom: 1px solid #ccc;
+}
+
+#movie-comment #comment-list .comment-item .user-id{
+	padding:auto 5px;
+	font-size: 15px;
+	color: #999;
+}
+
+#movie-comment #comment-list .comment-item .user-comment{
+	padding:auto 5px;
+	font-size: 16px;
+}
+
+#movie-comment #comment-list .comment-item .user-function{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	padding-bottom: 5px;
+}
+
+#movie-comment #comment-list .comment-item .user-function img{
+	height: 20px;
+	width: auto;
+}
+
+
+
+#movie-comment #comment-input{
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 100%;
+	margin:0 auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-end;
+	position: absolute;
+	bottom: 30px;
+
+}
+
+#movie-comment #comment-input #input-area{
+	resize: none;
+	width: 80%;
+	height: 70px;
+	margin-right: 5px;
+	border:none;
+	outline: none;
+}
+
+#movie-comment #comment-input #send-comment{
+	width: 19%;
+	height: 30px;
+	border:1px solid #ccc;
+	border-radius: 5px;
+}

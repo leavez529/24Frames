@@ -1,0 +1,70 @@
+#edit-dynamic{
+	min-height: 500px;
+	width: 80%;
+	margin: 0 auto;
+	position: relative;
+}
+
+#edit-dynamic-title{
+	text-align: center;
+	margin-top: 10px;
+}
+
+.edit-dynamic-select-pic{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#edit-dynamic-input{
+	width: 100%;
+	resize: none;
+	height: 100px;
+	border-left:none;
+	border-right:none;
+	outline: none;
+	margin: 0 auto;
+	margin-top: 10px;
+	padding-top: 5px;
+	margin-bottom: 10px;
+}
+
+.fileinput-button{
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+	
+}
+
+#send-dynamic-button{
+	border-radius: 5px;
+	border:1px solid #ccc;
+	padding:8px;
+	background-color: #ccc;
+}
+
+.send-dynamic-invis{
+	position: absolute;
+	top: 0;
+	right: 0;
+	opacity: 0;
+	-ms-filter: 'alpha(opacity= 0)';
+}
+
+#pic-list{
+	overflow: hidden;
+}
+
+.pic-showed-div{
+	float: left;
+	width: 27%;
+	margin: 10px;
+	height: 100px;
+	overflow: hidden;
+}
+
+.pic-showed{
+	width: 100%;
+	height: auto;
+}

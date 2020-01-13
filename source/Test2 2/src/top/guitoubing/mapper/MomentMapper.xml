@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.guitoubing.mapper.MomentMapper">
+  <resultMap id="BaseResultMap" type="top.guitoubing.pojo.Moment">
+    <constructor>
+      <idArg column="ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="CONTENT_" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="USER_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="LIKE_" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID_, CONTENT_, USER_ID_, LIKE_
+  </sql>
+  <select id="getMyMomentsByUserId" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select *
+    from MOMENT_
+    where USER_ID_ = #{id,jdbcType=DECIMAL}
+    order by ID_ desc
+  </select>
+  <select id="getMomentsByUserId" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select *
+    from MOMENT_
+    where USER_ID_ in (select S_ID_ from SUBSCRIBE_ where BY_ID_ = #{id,jdbcType=DECIMAL} )
+    order by ID_ desc
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from MOMENT_
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </select>
+  <select id="getMaxId" resultType="java.math.BigDecimal">
+    select MAX(ID_) from MOMENT_
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from MOMENT_
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="top.guitoubing.pojo.Moment">
+    insert into MOMENT_ (ID_, CONTENT_, USER_ID_, 
+      LIKE_)
+    values (#{id,jdbcType=DECIMAL}, #{content,jdbcType=VARCHAR}, #{userId,jdbcType=DECIMAL}, 
+      #{like,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="top.guitoubing.pojo.Moment">
+    insert into MOMENT_
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID_,
+      </if>
+      <if test="content != null">
+        CONTENT_,
+      </if>
+      <if test="userId != null">
+        USER_ID_,
+      </if>
+      <if test="like != null">
+        LIKE_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="like != null">
+        #{like,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.guitoubing.pojo.Moment">
+    update MOMENT_
+    <set>
+      <if test="content != null">
+        CONTENT_ = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID_ = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="like != null">
+        LIKE_ = #{like,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.guitoubing.pojo.Moment">
+    update MOMENT_
+    set CONTENT_ = #{content,jdbcType=VARCHAR},
+      USER_ID_ = #{userId,jdbcType=DECIMAL},
+      LIKE_ = #{like,jdbcType=VARCHAR}
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

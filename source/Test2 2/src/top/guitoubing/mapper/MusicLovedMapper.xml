@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.guitoubing.mapper.MusicLovedMapper">
+  <resultMap id="BaseResultMap" type="top.guitoubing.pojo.MusicLovedKey">
+    <constructor>
+      <idArg column="USER_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <idArg column="MUSIC_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="top.guitoubing.pojo.MusicLovedKey">
+    delete from MUSIC_LOVED_
+    where USER_ID_ = #{userId,jdbcType=DECIMAL}
+      and MUSIC_ID_ = #{musicId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="top.guitoubing.pojo.MusicLovedKey">
+    insert into MUSIC_LOVED_ (USER_ID_, MUSIC_ID_)
+    values (#{userId,jdbcType=DECIMAL}, #{musicId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="top.guitoubing.pojo.MusicLovedKey">
+    insert into MUSIC_LOVED_
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        USER_ID_,
+      </if>
+      <if test="musicId != null">
+        MUSIC_ID_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="musicId != null">
+        #{musicId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

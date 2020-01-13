@@ -1,0 +1,154 @@
+.hjrslide {
+    margin-left: 90px;
+    margin-right: 90px;
+    margin-top: 20px;
+    -webkit-transition-duration: 0.1s;
+    transition-duration: 0.1s;
+}
+
+.pusher .hjrslide.navwrap .menu {
+    border-radius: 0;
+    border: 0;
+}
+
+.hjr-header{
+    display: inline-block;
+    margin:0;
+    font-family:Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-weight:700;
+    font-size: 16px;
+    color:rgba(0,0,0,.87);
+}
+
+.hjr-content{
+    margin-left: 20px;
+    display: inline-block;
+    color: black
+}
+
+.hjr_right_icon{
+    float: right;
+    color: currentColor;
+}
+
+.hjr_center_content{
+    margin: auto;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.hjr-fileuploader{
+    opacity: 0;
+    position: absolute;
+    width: 0;
+}
+
+.hjr-toggle:hover .search-result{
+    height: fit-content;
+}
+
+.search-result{
+    margin-top: -10px;
+    height: 0;
+    overflow: hidden;
+}
+
+.search-result :hover{
+    height: fit-content;
+}
+
+.hjr-result-list{
+    padding: 0;
+    max-height:400px;
+    overflow-y: auto;
+    margin: 0;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+}
+
+
+.hjr-result-list::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 4px;
+}
+
+.hjr-result-list::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.hjr-result-list::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+}
+
+.hjr-result-list-item{
+    list-style: none;
+    cursor: pointer;
+    overflow: hidden;
+    max-height: 36px;
+    line-height: 36px;
+    padding: 0 6px;
+    background: white;
+}
+
+.hjr-result-list-item:hover{
+    background: lightgray;
+}
+
+.hjr-image{
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.-hjr-fixed-window {
+    height: 150px;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+}
+
+.hjr-fixed-window {
+    height: 150px;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+}
+
+.hjr-magic-img {
+    position: absolute;
+}
+
+.hjr-fat-img {
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hjr-thin-img {
+    width: 100%;
+    transform: translateY(-50%);
+}
+
+.lyk-fixed-window{
+
+}
+
+.lyk-magic-img{
+    width:100%;
+    height: 150px;
+    background-position:center;
+    background-size: 100% auto;
+}
+
+.lyk-thin-img{
+
+}
+
+.lyk-fat-img{
+    background-size:auto 150px;
+}

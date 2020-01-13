@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.guitoubing.mapper.ActorMapper">
+  <resultMap id="BaseResultMap" type="top.guitoubing.pojo.Actor">
+    <constructor>
+      <idArg column="ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="NAME_" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="GENDER_" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="BIRTHDAY_" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="STARSIGH_" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="REGION_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID_, NAME_, GENDER_, BIRTHDAY_, STARSIGH_, REGION_
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ACTOR_
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from ACTOR_
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="top.guitoubing.pojo.Actor">
+    insert into ACTOR_ (ID_, NAME_, GENDER_, 
+      BIRTHDAY_, STARSIGH_, REGION_
+      )
+    values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=VARCHAR}, #{starsigh,jdbcType=VARCHAR}, #{region,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="top.guitoubing.pojo.Actor">
+    insert into ACTOR_
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID_,
+      </if>
+      <if test="name != null">
+        NAME_,
+      </if>
+      <if test="gender != null">
+        GENDER_,
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY_,
+      </if>
+      <if test="starsigh != null">
+        STARSIGH_,
+      </if>
+      <if test="region != null">
+        REGION_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="starsigh != null">
+        #{starsigh,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        #{region,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.guitoubing.pojo.Actor">
+    update ACTOR_
+    <set>
+      <if test="name != null">
+        NAME_ = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        GENDER_ = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY_ = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="starsigh != null">
+        STARSIGH_ = #{starsigh,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        REGION_ = #{region,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.guitoubing.pojo.Actor">
+    update ACTOR_
+    set NAME_ = #{name,jdbcType=VARCHAR},
+      GENDER_ = #{gender,jdbcType=VARCHAR},
+      BIRTHDAY_ = #{birthday,jdbcType=VARCHAR},
+      STARSIGH_ = #{starsigh,jdbcType=VARCHAR},
+      REGION_ = #{region,jdbcType=DECIMAL}
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

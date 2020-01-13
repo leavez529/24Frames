@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.guitoubing.mapper.ActorPicMapper">
+  <resultMap id="BaseResultMap" type="top.guitoubing.pojo.ActorPicKey">
+    <constructor>
+      <idArg column="ACTOR_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <idArg column="PICTURE_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="top.guitoubing.pojo.ActorPicKey">
+    delete from ACTOR_PIC_
+    where ACTOR_ID_ = #{actorId,jdbcType=DECIMAL}
+      and PICTURE_ID_ = #{pictureId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="top.guitoubing.pojo.ActorPicKey">
+    insert into ACTOR_PIC_ (ACTOR_ID_, PICTURE_ID_)
+    values (#{actorId,jdbcType=DECIMAL}, #{pictureId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="top.guitoubing.pojo.ActorPicKey">
+    insert into ACTOR_PIC_
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="actorId != null">
+        ACTOR_ID_,
+      </if>
+      <if test="pictureId != null">
+        PICTURE_ID_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="actorId != null">
+        #{actorId,jdbcType=DECIMAL},
+      </if>
+      <if test="pictureId != null">
+        #{pictureId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

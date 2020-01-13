@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.guitoubing.mapper.PictureMapper">
+  <resultMap id="BaseResultMap" type="top.guitoubing.pojo.Picture">
+    <constructor>
+      <idArg column="ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="RESOURCE_" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID_, RESOURCE_
+  </sql>
+  <select id="selectByTag" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    SELECT * FROM PICTURE_ WHERE ID_ = (SELECT COVER_PIC_ FROM TAG_ WHERE TAG_.ID_=#{id,jdbcType=DECIMAL})
+  </select>
+  <select id="getMaxId" resultType="java.math.BigDecimal">
+    SELECT max(ID_) FROM PICTURE_
+  </select>
+  <select id="selectByMoment" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select * from PICTURE_ WHERE ID_ IN (SELECT PICTURE_ID_ FROM MOMENT_PIC_ WHERE MOMENT_ID_ = #{id,jdbcType=DECIMAL})
+  </select>
+  <select id="selectByMovie" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    SELECT * from PICTURE_ WHERE ID_ IN (SELECT PICTURE_ID_ from MOVIE_PIC_ WHERE MOVIE_PIC_.MOVIE_ID_=#{id,jdbcType=DECIMAL})
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PICTURE_
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from PICTURE_
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="top.guitoubing.pojo.Picture">
+    insert into PICTURE_ (ID_, RESOURCE_)
+    values (#{id,jdbcType=DECIMAL}, #{resource,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="top.guitoubing.pojo.Picture">
+    insert into PICTURE_
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID_,
+      </if>
+      <if test="resource != null">
+        RESOURCE_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="resource != null">
+        #{resource,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.guitoubing.pojo.Picture">
+    update PICTURE_
+    <set>
+      <if test="resource != null">
+        RESOURCE_ = #{resource,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.guitoubing.pojo.Picture">
+    update PICTURE_
+    set RESOURCE_ = #{resource,jdbcType=VARCHAR}
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

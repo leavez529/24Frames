@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.guitoubing.mapper.MovieTagMapper">
+  <resultMap id="BaseResultMap" type="top.guitoubing.pojo.MovieTag">
+    <constructor>
+      <idArg column="MOVIE_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <idArg column="TAG_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="INTRO_" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    MOVIE_ID_, TAG_ID_, INTRO_
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="top.guitoubing.pojo.MovieTagKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from MOVIE_TAG_
+    where MOVIE_ID_ = #{movieId,jdbcType=DECIMAL}
+      and TAG_ID_ = #{tagId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="top.guitoubing.pojo.MovieTagKey">
+    delete from MOVIE_TAG_
+    where MOVIE_ID_ = #{movieId,jdbcType=DECIMAL}
+      and TAG_ID_ = #{tagId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="top.guitoubing.pojo.MovieTag">
+    insert into MOVIE_TAG_ (MOVIE_ID_, TAG_ID_, INTRO_
+      )
+    values (#{movieId,jdbcType=DECIMAL}, #{tagId,jdbcType=DECIMAL}, #{intro,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="top.guitoubing.pojo.MovieTag">
+    insert into MOVIE_TAG_
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="movieId != null">
+        MOVIE_ID_,
+      </if>
+      <if test="tagId != null">
+        TAG_ID_,
+      </if>
+      <if test="intro != null">
+        INTRO_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="movieId != null">
+        #{movieId,jdbcType=DECIMAL},
+      </if>
+      <if test="tagId != null">
+        #{tagId,jdbcType=DECIMAL},
+      </if>
+      <if test="intro != null">
+        #{intro,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.guitoubing.pojo.MovieTag">
+    update MOVIE_TAG_
+    <set>
+      <if test="intro != null">
+        INTRO_ = #{intro,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MOVIE_ID_ = #{movieId,jdbcType=DECIMAL}
+      and TAG_ID_ = #{tagId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.guitoubing.pojo.MovieTag">
+    update MOVIE_TAG_
+    set INTRO_ = #{intro,jdbcType=VARCHAR}
+    where MOVIE_ID_ = #{movieId,jdbcType=DECIMAL}
+      and TAG_ID_ = #{tagId,jdbcType=DECIMAL}
+  </update>
+</mapper>

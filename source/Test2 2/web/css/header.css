@@ -1,0 +1,75 @@
+#header{
+	height: 50px;
+	border-bottom: 1px solid #ccc;
+	padding: 0 40px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	background-color: #fff;
+}
+
+#header #icon{
+	flex-basis: 200px
+	
+}
+
+#header #search-bar{
+	flex-basis: 200px;
+	width: 200px;
+	height: 25px;
+	background-color: #fff;
+	border-radius: 5px;
+	border:1px solid #ddd;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#header #search-bar #search-pic{
+	height: 15px;
+	width: auto;
+	margin-left: 5px;
+}
+
+#header #search-bar #search-input{
+	border:none;
+	outline: none;
+	margin-left: 5px;
+	padding-left: 5px;
+	width: 150px;
+}
+
+
+#header #tools{
+	width: 200px;
+	flex-basis: 200px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+}
+
+#header #tools #message-pic{
+	height: 25px;
+	width: auto;
+}
+
+#header #tools #menu-pic{
+	height: 25px;
+	width: auto;
+}
+
+#header #tools #user-pic{
+	height: 25px;
+	width: auto;
+}
+
+#header #tools #dynamic-pic{
+	height: 25px;
+	width: auto;
+}
+#header #tools #dynamic-pic1{
+	height: 25px;
+	width: auto;
+}

@@ -1,0 +1,9 @@
+.card-width-change{
+	width: calc(33% - 1.5em) !important;
+	height: 280px !important;
+	overflow: hidden;
+}
+
+.mycard{
+	width: 100% !important; 
+}

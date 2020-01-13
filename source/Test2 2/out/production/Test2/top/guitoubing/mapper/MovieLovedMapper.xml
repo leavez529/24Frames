@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.guitoubing.mapper.MovieLovedMapper">
+  <resultMap id="BaseResultMap" type="top.guitoubing.pojo.MovieLovedKey">
+    <constructor>
+      <idArg column="USER_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <idArg column="MOVIE_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="top.guitoubing.pojo.MovieLovedKey">
+    delete from MOVIE_LOVED_
+    where USER_ID_ = #{userId,jdbcType=DECIMAL}
+      and MOVIE_ID_ = #{movieId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="top.guitoubing.pojo.MovieLovedKey">
+    insert into MOVIE_LOVED_ (USER_ID_, MOVIE_ID_)
+    values (#{userId,jdbcType=DECIMAL}, #{movieId,jdbcType=DECIMAL})
+  </insert>
+  <select id="getLoved" parameterType="java.math.BigDecimal" resultType="java.math.BigDecimal">
+    select count(*) from MOVIE_LOVED_
+    where MOVIE_ID_=#{movie_id,jdbcType=DECIMAL}
+  </select>
+  <insert id="insertSelective" parameterType="top.guitoubing.pojo.MovieLovedKey">
+    insert into MOVIE_LOVED_
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        USER_ID_,
+      </if>
+      <if test="movieId != null">
+        MOVIE_ID_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="movieId != null">
+        #{movieId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

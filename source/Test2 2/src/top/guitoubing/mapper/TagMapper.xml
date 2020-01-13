@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.guitoubing.mapper.TagMapper">
+  <resultMap id="BaseResultMap" type="top.guitoubing.pojo.Tag">
+    <constructor>
+      <idArg column="ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="NAME_" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="COVER_PIC_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="BACKGROUD_PIC_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="CREATOR_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="LOVE_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="INTRO_" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID_, NAME_, COVER_PIC_, BACKGROUD_PIC_, CREATOR_, LOVE_, INTRO_
+  </sql>
+  <select id="maxId" resultType="java.math.BigDecimal">
+    SELECT max(ID_) FROM TAG_
+  </select>
+  <select id="selectByUser" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select * from TAG_ WHERE CREATOR_ = #{id,jdbcType=DECIMAL}
+  </select>
+  <select id="selectByUserLoved" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    SELECT * from TAG_ WHERE ID_ IN (SELECT TAG_ID_ FROM TAG_LOVED_ WHERE USER_ID_=#{id,jdbcType=DECIMAL})
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TAG_
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from TAG_
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="top.guitoubing.pojo.Tag">
+    insert into TAG_ (ID_, NAME_, COVER_PIC_, 
+      BACKGROUD_PIC_, CREATOR_, LOVE_, 
+      INTRO_)
+    values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{coverPic,jdbcType=DECIMAL}, 
+      #{backgroudPic,jdbcType=DECIMAL}, #{creator,jdbcType=DECIMAL}, #{love,jdbcType=DECIMAL}, 
+      #{intro,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="top.guitoubing.pojo.Tag">
+    insert into TAG_
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID_,
+      </if>
+      <if test="name != null">
+        NAME_,
+      </if>
+      <if test="coverPic != null">
+        COVER_PIC_,
+      </if>
+      <if test="backgroudPic != null">
+        BACKGROUD_PIC_,
+      </if>
+      <if test="creator != null">
+        CREATOR_,
+      </if>
+      <if test="love != null">
+        LOVE_,
+      </if>
+      <if test="intro != null">
+        INTRO_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="coverPic != null">
+        #{coverPic,jdbcType=DECIMAL},
+      </if>
+      <if test="backgroudPic != null">
+        #{backgroudPic,jdbcType=DECIMAL},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=DECIMAL},
+      </if>
+      <if test="love != null">
+        #{love,jdbcType=DECIMAL},
+      </if>
+      <if test="intro != null">
+        #{intro,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.guitoubing.pojo.Tag">
+    update TAG_
+    <set>
+      <if test="name != null">
+        NAME_ = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="coverPic != null">
+        COVER_PIC_ = #{coverPic,jdbcType=DECIMAL},
+      </if>
+      <if test="backgroudPic != null">
+        BACKGROUD_PIC_ = #{backgroudPic,jdbcType=DECIMAL},
+      </if>
+      <if test="creator != null">
+        CREATOR_ = #{creator,jdbcType=DECIMAL},
+      </if>
+      <if test="love != null">
+        LOVE_ = #{love,jdbcType=DECIMAL},
+      </if>
+      <if test="intro != null">
+        INTRO_ = #{intro,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.guitoubing.pojo.Tag">
+    update TAG_
+    set NAME_ = #{name,jdbcType=VARCHAR},
+      COVER_PIC_ = #{coverPic,jdbcType=DECIMAL},
+      BACKGROUD_PIC_ = #{backgroudPic,jdbcType=DECIMAL},
+      CREATOR_ = #{creator,jdbcType=DECIMAL},
+      LOVE_ = #{love,jdbcType=DECIMAL},
+      INTRO_ = #{intro,jdbcType=VARCHAR}
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

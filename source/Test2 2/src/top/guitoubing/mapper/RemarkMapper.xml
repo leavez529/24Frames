@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.guitoubing.mapper.RemarkMapper">
+  <resultMap id="BaseResultMap" type="top.guitoubing.pojo.Remark">
+    <constructor>
+      <idArg column="ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="RATING_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="CONTENT_" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="USER_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="MOVIE_ID_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="LIKE_" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID_, RATING_, CONTENT_, USER_ID_, MOVIE_ID_, LIKE_
+  </sql>
+  <select id="maxId" resultType="java.math.BigDecimal">
+    SELECT max(ID_) FROM REMARK_
+  </select>
+  <select id="selectByMovie" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    SELECT * FROM REMARK_ WHERE MOVIE_ID_ = #{id,jdbcType=DECIMAL}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from REMARK_
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from REMARK_
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="top.guitoubing.pojo.Remark">
+    insert into REMARK_ (ID_, RATING_, CONTENT_, 
+      USER_ID_, MOVIE_ID_, LIKE_
+      )
+    values (#{id,jdbcType=DECIMAL}, #{rating,jdbcType=DECIMAL}, #{content,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=DECIMAL}, #{movieId,jdbcType=DECIMAL}, #{like,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="top.guitoubing.pojo.Remark">
+    insert into REMARK_
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID_,
+      </if>
+      <if test="rating != null">
+        RATING_,
+      </if>
+      <if test="content != null">
+        CONTENT_,
+      </if>
+      <if test="userId != null">
+        USER_ID_,
+      </if>
+      <if test="movieId != null">
+        MOVIE_ID_,
+      </if>
+      <if test="like != null">
+        LIKE_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="rating != null">
+        #{rating,jdbcType=DECIMAL},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="movieId != null">
+        #{movieId,jdbcType=DECIMAL},
+      </if>
+      <if test="like != null">
+        #{like,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.guitoubing.pojo.Remark">
+    update REMARK_
+    <set>
+      <if test="rating != null">
+        RATING_ = #{rating,jdbcType=DECIMAL},
+      </if>
+      <if test="content != null">
+        CONTENT_ = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID_ = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="movieId != null">
+        MOVIE_ID_ = #{movieId,jdbcType=DECIMAL},
+      </if>
+      <if test="like != null">
+        LIKE_ = #{like,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.guitoubing.pojo.Remark">
+    update REMARK_
+    set RATING_ = #{rating,jdbcType=DECIMAL},
+      CONTENT_ = #{content,jdbcType=VARCHAR},
+      USER_ID_ = #{userId,jdbcType=DECIMAL},
+      MOVIE_ID_ = #{movieId,jdbcType=DECIMAL},
+      LIKE_ = #{like,jdbcType=DECIMAL}
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>
